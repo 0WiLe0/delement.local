@@ -1,1 +1,0 @@
-<?php $filesInfo = ["/local/templates/delement/frontend/assets/js/bundle.js" => "1776783413741975",]; ?>
