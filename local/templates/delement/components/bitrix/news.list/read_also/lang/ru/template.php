@@ -1,3 +1,3 @@
-<?
-$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Будет удалена вся информация, связанная с этой записью. Продолжить?";
-?>
+<?php
+$MESS["B_NL_READ_ALSO_TEXT"] = "Читайте также";
+$MESS["B_NL_READ_ALSO_ALL_ARTICLE_TEXT"] = "Все статьи";

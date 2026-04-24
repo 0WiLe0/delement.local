@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 /** @var array $arParams */
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
@@ -13,6 +13,7 @@
 $this->setFrameMode(true);
 
 use lib\Helpers\ImageHelper;
+use Bitrix\Main\Localization\Loc;
 
 global $relatedNewsFilter;
 global $promoFilter;
@@ -43,9 +44,9 @@ $promoFilter = [
                 <header class="post-layout__header article-summary">
                     <ul class="post-layout__header-item article-summary__hashtag-list">
 
-                        <?php foreach ($arResult['PROPERTIES']['TAGS_ARTICLE']['VALUE'] as $tag ) { ?>
+                        <?php foreach ($arResult['PROPERTIES']['TAGS_ARTICLE']['VALUE'] as $tag) { ?>
                             <li class="article-summary__hashtag-item">
-                                <a href="#" class="article-summary__hashtag-link"><?= $tag?></a>
+                                <a href="#" class="article-summary__hashtag-link"><?= $tag ?></a>
                             </li>
                         <?php } ?>
 
@@ -53,23 +54,24 @@ $promoFilter = [
                     <div class="article-summary__post-info">
                         <span class="article-summary__author">
 
-                            <?= $arResult['PROPERTIES']['AUTHOR']['VALUE'];?>
+                            <?= $arResult['PROPERTIES']['AUTHOR']['VALUE']; ?>
 
                         </span>
-                        <time datetime="<?= $arResult['DISPLAY_ACTIVE_FROM'];?>" class="post-layout__header-item post-layout__time article-summary__info-text">
+                        <time datetime="<?= $arResult['DISPLAY_ACTIVE_FROM']; ?>"
+                              class="post-layout__header-item post-layout__time article-summary__info-text">
 
-                            <?= $arResult['DISPLAY_ACTIVE_FROM'];?>
+                            <?= $arResult['DISPLAY_ACTIVE_FROM']; ?>
 
                         </time>
                     </div>
                     <span class="post-layout__header-item post-layout__time-to-read article-summary__info-text">
 
-                        <?= $arResult['PROPERTIES']['READ_TIME']['VALUE'];?>
+                        <?= $arResult['PROPERTIES']['READ_TIME']['VALUE']; ?>
 
                     </span>
                     <div class="pull-right article-summary__info-text article-summary__info-text--with-icon">
 
-                        <?= $arResult['SHOW_COUNTER'] ?? 0;?>
+                        <?= $arResult['SHOW_COUNTER'] ?? 0; ?>
 
                         <span class="article-summary__info-icon article-summary__info-icon--eye">
                         <svg width="22" height="22">
@@ -82,16 +84,17 @@ $promoFilter = [
                 <div class="post-layout__content">
 
 
-                    <?= $arResult['DETAIL_TEXT'];?>
+                    <?= $arResult['DETAIL_TEXT']; ?>
 
                     <div class="post-layout__slider blog-gallery">
                         <div class="swiper-container">
                             <div class="swiper-wrapper" data-js-gallery-container>
 
                                 <?php foreach ($arResult['PROPERTIES']['DETAIL_GALLERY']['VALUE'] as $image) { ?>
-                                <div class="swiper-slide">
-                                    <img src="<?= ImageHelper::resizeById($image, 783, 366)?>" width="783" height="366" class="blog-gallery__img" data-js-zoom/>
-                                </div>
+                                    <div class="swiper-slide">
+                                        <img src="<?= ImageHelper::resizeById($image, 783, 366) ?>" width="783"
+                                             height="366" class="blog-gallery__img" data-js-zoom/>
+                                    </div>
                                 <?php } ?>
 
                             </div>
@@ -120,7 +123,8 @@ $promoFilter = [
                 <footer class="post-layout__footer">
                     <div class="blog-bottom">
                         <div class="blog-bottom__aux">
-                            <a class="back-list-article link-with-arrow link-with-arrow--back" href="<?= $arResult['LIST_PAGE_URL']; ?>">Вернуться к списку статей</a>
+                            <a class="back-list-article link-with-arrow link-with-arrow--back"
+                               href="<?= $arResult['LIST_PAGE_URL']; ?>"><?= Loc::getMessage('B_ND_D_BACK_LIST_ARTICLE_TEXT') ?></a>
                         </div>
                     </div>
                 </footer>
@@ -144,9 +148,9 @@ $promoFilter = [
                             "SORT_ORDER2" => $arParams["SORT_ORDER2"],
                             "FIELD_CODE" => $arParams["LIST_FIELD_CODE"],
                             "PROPERTY_CODE" => $arParams["PROPERTY_CODE"],
-                            "DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["detail"],
-                            "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
-                            "IBLOCK_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"],
+                            "DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["detail"],
+                            "SECTION_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
+                            "IBLOCK_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["news"],
                             "SET_TITLE" => $arParams["SET_TITLE"],
                             "SET_LAST_MODIFIED" => $arParams["SET_LAST_MODIFIED"],
                             "MESSAGE_404" => $arParams["MESSAGE_404"],
@@ -200,9 +204,9 @@ $promoFilter = [
                             "SORT_ORDER2" => $arParams["SORT_ORDER2"],
                             "FIELD_CODE" => ['ID', 'PREVIEW_TEXT', 'PREVIEW_PICTURE', 'DETAIL_PAGE_URL'],
                             "PROPERTY_CODE" => ['LINK_ARTICLE'],
-                            "DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["detail"],
-                            "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
-                            "IBLOCK_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"],
+                            "DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["detail"],
+                            "SECTION_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
+                            "IBLOCK_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["news"],
                             "SET_TITLE" => $arParams["SET_TITLE"],
                             "SET_LAST_MODIFIED" => $arParams["SET_LAST_MODIFIED"],
                             "MESSAGE_404" => $arParams["MESSAGE_404"],

@@ -1,3 +1,2 @@
-<?
-$MESS["CT_BNL_ELEMENT_DELETE_CONFIRM"] = "Будет удалена вся информация, связанная с этой записью. Продолжить?";
-?>
+<?php
+$MESS["B_NL_PROMO_PROFITABLE_TEXT"] = "Выгодные предложения и акции";
