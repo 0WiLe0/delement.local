@@ -1,1 +1,0 @@
-<?php $filesInfo = ["/local/templates/delement/components/bitrix/form.result.new/form_delement/style.css" => "1776951668666",]; ?>
