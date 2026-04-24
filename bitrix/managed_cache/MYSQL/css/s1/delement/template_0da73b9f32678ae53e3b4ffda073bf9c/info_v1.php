@@ -1,0 +1,1 @@
+<?php $filesInfo = ["/local/templates/delement/frontend/assets/css/main.css" => "17767834132517149",]; ?>
