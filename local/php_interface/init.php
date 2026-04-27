@@ -1,5 +1,11 @@
 <?php
+use lib\EventServices\AuthHistoryLogger;
+use lib\EventServices\FormMailer;
+
 $constPath = $_SERVER["DOCUMENT_ROOT"] . '/local/php_interface/init_include/const.php';
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/lib/EventServices/AuthHistoryLogger.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/lib/EventServices/FormMailer.php';
 
 if (file_exists($constPath)) {
     require_once $constPath;
@@ -18,9 +24,5 @@ if (file_exists($sendMailPath)) {
     require_once $sendMailPath;
 }
 
-$authHistoryPath = $_SERVER["DOCUMENT_ROOT"] . '/local/php_interface/events/auth_history.php';
 
-if (file_exists($authHistoryPath)) {
-    require_once $authHistoryPath;
-}
-
+AddEventHandler('main', 'OnAfterUserLogin', [AuthHistoryLogger::class, 'handleLogin']);

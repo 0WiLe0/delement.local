@@ -1,7 +1,8 @@
 <?php
 
 use Bitrix\Main\Loader;
-use Bitrix\Main\Mail\Event;
+use Bitrix\Iblock\Elements\ElementServicesTable;
+use lib\EventServices\FormMailer;
 
 AddEventHandler('form', 'onAfterResultAdd', 'sendMailForManagers');
 
@@ -27,7 +28,7 @@ function sendMailForManagers($WEB_FORM_ID, $RESULT_ID)
     $serviceIds = array_filter(array_map('intval', $serviceIds));
 
     if (!empty($serviceIds)) {
-        $services = \Bitrix\Iblock\Elements\ElementServicesTable::getList([
+        $services = ElementServicesTable::getList([
             'select' => [
                 'ID' => 'ID',
                 'NAME' => 'NAME',
@@ -91,25 +92,16 @@ function sendMailForManagers($WEB_FORM_ID, $RESULT_ID)
         }
     }
 
-    $mailFields = [
-        'EVENT_NAME' => 'CONTACT_FORM_SERVICE_MANAGER',
-        'LID' => SITE_ID,
-        'C_FIELDS' => [
-            'EMAIL_TO' => implode(',', $managerEmail),
-            'NAME' => $name,
-            'PHONE' => $phone,
-            'EMAIL' => $email,
-            'MESSAGE' => $message,
-            'SERVICES' => implode(', ', $serviceNames),
-            'PAGE_URL' => $pageUrl,
-            'DATE_CREATE' => $date,
-            'RESULT_ID' => $RESULT_ID,
-        ],
-    ];
-
-    if (!empty($fileIds)) {
-        $mailFields['FILE'] = $fileIds;
-    }
-
-    Event::send($mailFields);
+    FormMailer::handle([
+        'EMAIL_TO' => $managerEmail,
+        'NAME' => $name,
+        'PHONE' => $phone,
+        'EMAIL' => $email,
+        'MESSAGE' => $message,
+        'SERVICES' => $serviceNames,
+        'PAGE_URL' => $pageUrl,
+        'DATE_CREATE' => $date,
+        'RESULT_ID' => $RESULT_ID,
+        'FILES' => $fileIds,
+    ]);
 }
